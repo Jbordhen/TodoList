@@ -26,6 +26,9 @@ const Wrapper = styled.div`
   form > div {
     margin: 0 auto;
   }
+  /* filter: blur(${({ showModal }) => (showModal ? '1px' : '0px')}) */
+  filter: ${({ showModal }) =>
+    showModal ? 'blur(1px) brightness(80%)' : 'none'};
 `
 
 const Header = styled.header`

@@ -69,7 +69,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper showModal={showModal}>
         <Header>Todo List</Header>
         <form
           onSubmit={(e) => {
