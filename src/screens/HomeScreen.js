@@ -8,7 +8,6 @@ import {
   Input,
   Button,
   Col,
-  ResponsiveDiv,
   Modal
 } from '../styles/styles'
 
@@ -69,75 +68,77 @@ const HomeScreen = () => {
   useEffect(() => {}, [todos])
 
   return (
-    <Wrapper>
-      <Header>Todo List</Header>
-      <form
-        as={ResponsiveDiv}
-        onSubmit={(e) => {
-          e.preventDefault()
-          handleTodo(e)
-        }}>
-        <Input
-          name='todo'
-          placeholder='Add a new todo'
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value)
-          }}
-        />
-        <Button type='submit'>Add Todo</Button>
-        <Button type='reset' onClick={resetTodos}>
-          Clear All Todos
-        </Button>
-      </form>
-      <Col>
-        {todos ? (
-          todos.map((todo) => (
-            <Col key={todo.id}>
-              <Todos
-                toggleComplete={() => toggleComplete(todo)}
-                todo={todo}
-                setShowModal={setShowModal}
-                setEditTodo={setEditTodo}
-                handleDeleteTodo={handleDeleteTodo}
+    <>
+      <Wrapper>
+        <Header>Todo List</Header>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleTodo(e)
+          }}>
+          <Input
+            name='todo'
+            placeholder='Add a new todo'
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value)
+            }}
+          />
+          <div>
+            <Button type='submit'>Add Todo</Button>
+            <Button type='reset' onClick={resetTodos}>
+              Clear All Todos
+            </Button>
+          </div>
+        </form>
+        <Col>
+          {todos ? (
+            todos.map((todo) => (
+              <Col key={todo.id}>
+                <Todos
+                  toggleComplete={() => toggleComplete(todo)}
+                  todo={todo}
+                  setShowModal={setShowModal}
+                  setEditTodo={setEditTodo}
+                  handleDeleteTodo={handleDeleteTodo}
+                />
+              </Col>
+            ))
+          ) : (
+            // console.log(todos)
+            <Row>Add Some Todos</Row>
+          )}
+        </Col>
+      </Wrapper>
+      {showModal && (
+        <Modal>
+          <Col>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                updatedValue && updateTodo(updatedValue)
+              }}>
+              <Input
+                type='Todo'
+                value={updatedValue ? updatedValue : editTodo.value}
+                onChange={(e) => {
+                  setUpdatedValue(e.target.value)
+                }}
               />
-              {showModal && (
-                <Modal>
-                  <Col>
-                    <form
-                      as={ResponsiveDiv}
-                      onSubmit={(e) => {
-                        e.preventDefault()
-                        updatedValue && updateTodo(updatedValue)
-                      }}>
-                      <Input
-                        type='Todo'
-                        value={updatedValue ? updatedValue : editTodo.value}
-                        onChange={(e) => {
-                          setUpdatedValue(e.target.value)
-                        }}
-                      />
-                      <Button type='submit'>Update Todo</Button>
-                      <Button
-                        type='reset'
-                        onClick={() => {
-                          setUpdatedValue('')
-                          setShowModal(false)
-                        }}>
-                        Cancel
-                      </Button>
-                    </form>
-                  </Col>
-                </Modal>
-              )}
-            </Col>
-          ))
-        ) : (
-          // console.log(todos)
-          <Row>Add Some Todos</Row>
-        )}
-      </Col>
-    </Wrapper>
+              <Button type='submit'>Update Todo</Button>
+              <Button
+                type='reset'
+                onClick={() => {
+                  setUpdatedValue('')
+                  setShowModal(false)
+                }}>
+                Cancel
+              </Button>
+            </form>
+          </Col>
+        </Modal>
+      )}
+    </>
   )
 }
 

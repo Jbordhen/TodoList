@@ -1,18 +1,38 @@
 import styled from 'styled-components'
+
+const Col = styled.div`
+  padding: 1rem 0;
+`
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto 1rem;
+  margin: 0 1rem;
   width: calc(100vw - 2rem);
+  height: 100vh;
   max-width: 1080px;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  form,
+  ${Col} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 1rem);
+  }
+
+  form > div {
+    margin: 0 auto;
+  }
 `
 
 const Header = styled.header`
   font-size: 3rem;
   font-style: italic;
   color: coral;
-  margin: auto;
+  margin: 0 auto;
 `
 
 const Input = styled.input`
@@ -44,14 +64,9 @@ const Button = styled.button`
   }
 `
 
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-`
-
 const Todo = styled.div`
-  width: calc(100% - 2rem);
+  /* width: calc(100% - 2rem); */
+  width: inherit;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -74,14 +89,6 @@ const Todo = styled.div`
   }
 `
 
-const ResponsiveDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media screen and (min-width: 560px) {
-    flex-direction: row;
-  }
-`
-
 const IconDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -98,31 +105,22 @@ const Modal = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 40%;
-  bottom: 40%;
-  left: 25%;
-  right: 25%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  aspect-ratio: 16/9;
+  margin-left: auto;
+  margin-right: auto;
   padding: 1rem;
   padding-right: 1.25rem;
   background-color: rgba(238, 238, 238, 0.7);
   color: white;
   border-radius: 0.25rem;
   z-index: 100;
-  @media screen and (max-width: 768px) {
-    left: 10%;
-    right: 10%;
+  input {
+    border-radius: 0.25rem;
   }
 `
 
-export {
-  Wrapper,
-  Header,
-  Input,
-  Row,
-  Button,
-  Col,
-  Todo,
-  ResponsiveDiv,
-  IconDiv,
-  Modal
-}
+export { Wrapper, Header, Input, Row, Button, Col, Todo, IconDiv, Modal }
