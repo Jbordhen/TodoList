@@ -4,7 +4,8 @@ const Todos = ({
   setEditTodo,
   toggleComplete,
   setShowModal,
-  handleDeleteTodo
+  handleDeleteTodo,
+  setUpdatedValue
 }) => {
   return (
     <Todo completed={todo.completed} onDoubleClick={() => toggleComplete(todo)}>
@@ -13,6 +14,7 @@ const Todos = ({
         <i
           onClick={() => {
             // console.log(todo.id)
+            setUpdatedValue(todo.value)
             setEditTodo(todo)
             setShowModal(true)
           }}

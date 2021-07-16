@@ -98,6 +98,7 @@ const HomeScreen = () => {
                 <Todos
                   toggleComplete={() => toggleComplete(todo)}
                   todo={todo}
+                  setUpdatedValue={setUpdatedValue}
                   setShowModal={setShowModal}
                   setEditTodo={setEditTodo}
                   handleDeleteTodo={handleDeleteTodo}
@@ -120,7 +121,7 @@ const HomeScreen = () => {
               }}>
               <Input
                 type='Todo'
-                value={updatedValue ? updatedValue : editTodo.value}
+                value={updatedValue}
                 onChange={(e) => {
                   setUpdatedValue(e.target.value)
                 }}
