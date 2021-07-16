@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function App() {
-  const [todos, setTodos] = useLocalStorage('todos', [{}])
+  const [todos, setTodos] = useLocalStorage('todos', [])
 
   return (
     <store.Provider value={{ todos, setTodos }}>

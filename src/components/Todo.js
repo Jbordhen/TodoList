@@ -7,7 +7,7 @@ const Todos = ({
   handleDeleteTodo
 }) => {
   return (
-    <Todo completed={todo.completed}>
+    <Todo completed={todo.completed} onDoubleClick={() => toggleComplete(todo)}>
       <p onClick={() => toggleComplete(todo)}>{todo.value}</p>
       <IconDiv>
         <i
